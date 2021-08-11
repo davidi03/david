@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary">
+    <v-app-bar app color="orange">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Application</v-toolbar-title>
@@ -17,8 +17,6 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-navigation-drawer v-model="drawer" app fixed absolute left temporary>
         <v-list nav dense>
@@ -48,10 +46,11 @@
 export default {
   data() {
     return {
+      name: "Navigation",
       drawer: true,
       items: [
-        { icon: "mdi-speedometer", title: "Dashboard", route: "/Dashboard" },
-        { icon: "mdi-tools", title: "About", route: "/views/About.vue" },
+        { icon: "mdi-speedometer", title: "Dashboard", route: "/" },
+        { icon: "mdi-tools", title: "About", route: "/About" },
       ],
     };
   },
