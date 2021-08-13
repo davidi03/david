@@ -1,9 +1,39 @@
 <template>
-  <v-app>
-    <v-app-bar app color="orange">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer" app color="orange">
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title"> Drawer </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      color="primary"
+      dark
+      src="https://picsum.photos/1920/1080?random"
+      prominent
+      @click="drawer = !drawer"
+    >
+      <v-app-bar-nav-icon color="#bada55"></v-app-bar-nav-icon>
+
+      <v-app-bar-title>Application</v-app-bar-title>
+
       <v-spacer></v-spacer>
 
       <v-btn icon>
@@ -11,54 +41,35 @@
       </v-btn>
 
       <v-btn icon>
-        <v-icon>mdi-filter</v-icon>
+        <v-icon>mdi-heart</v-icon>
       </v-btn>
 
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-
-      <v-navigation-drawer v-model="drawer" app fixed absolute left temporary>
-        <v-list nav dense>
-          <v-list-item-group active-class="orange--text text--accent-4">
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              dense
-              router
-              :to="item.route"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-title>{{ item.title }}</v-list-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
     </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
-
 <script>
 export default {
-  data() {
-    return {
-      name: "Navigation",
-      drawer: true,
-      items: [
-        { icon: "mdi-speedometer", title: "Dashboard", route: "/" },
-        { icon: "mdi-tools", title: "About", route: "/About" },
-      ],
-    };
-  },
-
-  watch: {
-    group() {
-      this.drawer = true;
-    },
-  },
+  data: () => ({
+    drawer: null,
+    items: [
+      { title: "Dashboard", icon: "mdi-format-list-checks", to: "/" },
+      { title: "About", icon: "mdi-help-box", to: "/about" },
+      { title: "Contact", icon: "mdi-contacts", to: "/contact" },
+    ],
+  }),
 };
 </script>
+
+<style>
+.v-app-bar-title__content {
+  width: 200px !important;
+  color: #ff00ff;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
-    <router-view></router-view>
     <!-- <v-app-bar app color="orange">
+      
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Application</v-toolbar-title>
@@ -42,12 +42,15 @@
         </v-list>
       </v-navigation-drawer>
     </v-app-bar> -->
-    <Navigation />
+    <div>
+      <navigation />
+    </div>
+    <!-- <router-view></router-view> -->
   </v-app>
 </template>
 
 <script>
- import Navigation from "@/components/Navigation.vue";
+import Navigation from "@/components/Navigation.vue";
 
 export default {
   data() {
